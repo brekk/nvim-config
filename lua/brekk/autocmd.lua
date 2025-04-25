@@ -25,14 +25,14 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   group = madlib_lsp_group,
 })
 
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
-  pattern = { "*.js,*.mjs,*.cjs" },
-  callback = function()
-    require("lint").try_lint("eslint")
-  end,
-})
+-- vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
+--   pattern = { "*.js,*.mjs,*.cjs" },
+--   callback = function()
+--     require("lint").try_lint("eslint")
+--   end,
+-- })
 
-vim.api.nvim_create_autocmd("BufWritePre", {
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePre" }, {
   pattern = "*",
   callback = function(args)
     require("conform").format({ bufnr = args.buf })
